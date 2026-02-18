@@ -6,14 +6,14 @@ import { trackingStore } from "../stores/trackingStore";
 const position: [number, number] = [48.46820202247146, 35.06348145187649];
 
 export const MapView = observer(() => {
-  const { trackingObjects, lostObjectsList } = trackingStore;
+  const { trackingObjects, lostObjects } = trackingStore;
 
   return (
     <Map position={position}>
       {trackingObjects?.map((obj) => (
         <TrackingObject key={obj.id} object={obj} />
       ))}
-      {lostObjectsList?.map((obj) => (
+      {lostObjects?.map((obj) => (
         <TrackingObject key={obj.id} object={obj} />
       ))}
     </Map>

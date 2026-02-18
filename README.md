@@ -34,7 +34,7 @@ This is a monorepo with:
 ## 1. Clone the repository
 
 ```bash
-git clone <clone_link>
+git clone https://github.com/Saharij/deviro-test-task.git
 cd deviro-test-task
 ```
 

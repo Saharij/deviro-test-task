@@ -6,14 +6,14 @@ import { trackingStore } from "../stores";
 import { ObjectStatistics } from "../components";
 
 export const StatisticsView = observer(() => {
-  const { trackingObjects, lostObjectsList } = trackingStore;
+  const { trackingObjects, lostObjects } = trackingStore;
   const [statisticOpen, setStatisticOpen] = useState(false);
 
   if (statisticOpen) {
     return (
       <ObjectStatistics
         active={trackingObjects?.length}
-        lost={lostObjectsList?.length}
+        lost={lostObjects?.length}
         onClose={() => setStatisticOpen(false)}
       />
     );

@@ -6,7 +6,7 @@ const LOST_OBJECTS = "lost_objects";
 
 export class TrackingStore {
   trackingObjects: TrackingObject[] = [];
-  lostObjectsList: TrackingObject[] = [];
+  lostObjects: TrackingObject[] = [];
   private lostRemovalTimers = new Map<string, ReturnType<typeof setTimeout>>();
 
   constructor() {
@@ -36,9 +36,7 @@ export class TrackingStore {
     }
 
     const timer = setTimeout(() => {
-      this.lostObjectsList = this.lostObjectsList.filter(
-        (obj) => obj.id !== id,
-      );
+      this.lostObjects = this.lostObjects.filter((obj) => obj.id !== id);
       this.lostRemovalTimers.delete(id);
     }, LOST_OBJECT_TTL_MS);
 
@@ -58,12 +56,12 @@ export class TrackingStore {
   setInitialData(data: TrackingObject[]) {
     this.clearAllLostTimers();
     this.trackingObjects = data;
-    this.lostObjectsList = this.getLostObjectsFromLocalStorage();
+    this.lostObjects = this.getLostObjectsFromLocalStorage();
   }
 
   updateData(data: TrackingObject[]) {
     const previousActiveObjects = this.trackingObjects;
-    const previosLostObjects = this.lostObjectsList;
+    const previosLostObjects = this.lostObjects;
 
     const nextActiveIds = new Set(data.map((obj) => obj.id));
     const lostIds = new Set(previosLostObjects.map((obj) => obj.id));
@@ -95,14 +93,14 @@ export class TrackingStore {
     }
 
     this.trackingObjects = data;
-    this.lostObjectsList = nextLostObjectsList;
+    this.lostObjects = nextLostObjectsList;
     this.setLostObjectsToLocalStorage(nextLostObjectsList);
   }
 
   reset() {
     this.clearAllLostTimers();
     this.trackingObjects = [];
-    this.lostObjectsList = [];
+    this.lostObjects = [];
     localStorage.removeItem(LOST_OBJECTS);
   }
 }

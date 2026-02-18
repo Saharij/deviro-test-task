@@ -7,6 +7,7 @@ import {
   Paper,
   TextField,
   Typography,
+  styled,
 } from "@mui/material";
 
 import { authStore } from "../stores/authStore";
@@ -22,24 +23,16 @@ export const LoginFormView = observer(() => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        height: "100vh",
-        width: "100vw",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
+    <Container>
       <Paper
         component="form"
         elevation={3}
         onSubmit={handleSubmit}
         sx={{
-          width: "100%",
-          maxWidth: 380,
           display: "flex",
           flexDirection: "column",
+          width: "100%",
+          maxWidth: 380,
           p: 3,
           gap: 2,
         }}
@@ -64,6 +57,14 @@ export const LoginFormView = observer(() => {
           Sign in
         </Button>
       </Paper>
-    </Box>
+    </Container>
   );
+});
+
+const Container = styled(Box)({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "100vw",
+  height: "100vh",
 });
