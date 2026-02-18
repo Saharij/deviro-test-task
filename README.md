@@ -6,8 +6,6 @@ This is a monorepo with:
 - `apps/server` - Node.js + Express + WebSocket backend
 - `packages/*` - shared packages used by apps
 
-To login use this password `secret1111`
-
 ## Tech stack
 
 - TypeScript
@@ -21,7 +19,7 @@ To login use this password `secret1111`
 ## Features
 
 - Auth via password + token
-- 200 moving objects
+- 100-200 moving objects
 - Smart city targeting
 - Danger zones
 - Lost + recovery logic
@@ -36,15 +34,8 @@ To login use this password `secret1111`
 ## 1. Clone the repository
 
 ```bash
-git clone https://github.com/Saharij/deviro-test-task.git
+git clone <clone_link>
 cd deviro-test-task
-```
-
-Example:
-
-```bash
-git clone https://github.com/<your-org>/<your-repo>.git
-cd <your-repo>
 ```
 
 ## 2. Install dependencies
@@ -103,4 +94,3 @@ npm run dev -w server
 rm -rf node_modules
 npm install
 ```
-# deviro-test-task
