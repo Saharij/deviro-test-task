@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import { type TrackingObject } from "@shared/types";
 
 const LOST_OBJECT_TTL_MS = 5 * 60 * 1000;
@@ -36,8 +36,10 @@ export class TrackingStore {
     }
 
     const timer = setTimeout(() => {
-      this.lostObjects = this.lostObjects.filter((obj) => obj.id !== id);
-      this.lostRemovalTimers.delete(id);
+      runInAction(() => {
+        this.lostObjects = this.lostObjects.filter((obj) => obj.id !== id);
+        this.lostRemovalTimers.delete(id);
+      });
     }, LOST_OBJECT_TTL_MS);
 
     this.lostRemovalTimers.set(id, timer);
